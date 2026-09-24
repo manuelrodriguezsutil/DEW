@@ -1,6 +1,6 @@
 // division 1: carteles 
 
-var numCarteles = prompt("¿Cuántos carteles quieres?");
+var numCarteles = Number(prompt("¿Cuántos carteles quieres?"));
 
 document.write("<div>");
 for (let i = 0; i < numCarteles; i++) {
@@ -11,8 +11,8 @@ document.write("</div>");
 
 // division 2: puertas y numeros
 
-var numPuertas = prompt("¿Cuántas puertas quieres?");
-var numPrimeraPuerta = prompt("¿Cuál es el número de la primera puerta?");
+var numPuertas = Number(prompt("¿Cuántas puertas quieres?"));
+var numPrimeraPuerta = Number(prompt("¿Cuál es el número de la primera puerta?"));
 
 document.write("<div>");
 for (let i = 0; i < numPuertas; i++) {
@@ -25,7 +25,7 @@ document.write("</div>");
 
 // division 3: escaparates
 
-var numEscaparates = prompt("¿Cuántos escaparates quieres?")
+var numEscaparates = Number(prompt("¿Cuántos escaparates quieres?"));
 
 document.write("<div>");
 for (let i = 0; i < numEscaparates; i++) {
@@ -37,11 +37,21 @@ document.write("</div>");
 // division 4: semaforo y reloj
 
 var colorSemaforo = prompt("¿De qué color quieres el semáforo?");
+colorSemaforo = colorSemaforo.toLowerCase();
+
 var horaReloj = prompt("¿Qué hora quieres que tenga el reloj (1-12)?");
 horaReloj = Number(horaReloj);
 
+// Si pone un valor no permitido, volver a preguntar
+while (colorSemaforo != "rojo" && colorSemaforo != "ambar" && colorSemaforo != "verde") {
+    alert("Color no permitido. Debe ser: rojo, verde o ambar.")
+
+    colorSemaforo = prompt("¿De qué color quieres el semáforo?");
+    colorSemaforo = colorSemaforo.toLowerCase();
+}
+
 document.write("<div>");
-if (colorSemaforo.toLowerCase() == "rojo") {
+if (colorSemaforo == "rojo") {
     // semaforo en rojo
     document.write("<img src='imagenes/semaforo_rojo.jpg' alt='semaforo rojo' />");
 } else if (colorSemaforo == "ambar") {
@@ -52,6 +62,11 @@ if (colorSemaforo.toLowerCase() == "rojo") {
     document.write("<img src='imagenes/semaforo_verde.jpg' alt='semaforo verde' />");
 } else {
     alert("Color no permitido. Debe ser: rojo, verde o ambar.")
+}
+
+while(horaReloj > 12 || horaReloj < 1) {
+    alert("Debe ser una hora entre 1-12")
+    horaReloj = Number(prompt("¿Qué hora quieres que tenga el reloj (1-12)?"));
 }
 
 switch(horaReloj) {
