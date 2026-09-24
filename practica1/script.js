@@ -1,6 +1,6 @@
 // division 1: carteles 
 
-var numCarteles = Number(prompt("¿Cuántos carteles quieres?"));
+let numCarteles = Number(prompt("¿Cuántos carteles quieres?"));
 
 document.write("<div>");
 for (let i = 0; i < numCarteles; i++) {
@@ -11,21 +11,21 @@ document.write("</div>");
 
 // division 2: puertas y numeros
 
-var numPuertas = Number(prompt("¿Cuántas puertas quieres?"));
-var numPrimeraPuerta = Number(prompt("¿Cuál es el número de la primera puerta?"));
+let numPuertas = Number(prompt("¿Cuántas puertas quieres?"));
+let numPrimeraPuerta = Number(prompt("¿Cuál es el número de la primera puerta?"));
 
 document.write("<div>");
 for (let i = 0; i < numPuertas; i++) {
     console.log(`Dibujando puerta: ${i}`)
     document.write("<img src=imagenes/puerta.png alt='puerta' />"); // imagen de las puertas 
     document.write(`<p>${numPrimeraPuerta}</p>`); // numero de las puertas 
-    numPrimeraPuerta++;
+    numPrimeraPuerta += 2;
 }
 document.write("</div>");
 
 // division 3: escaparates
 
-var numEscaparates = Number(prompt("¿Cuántos escaparates quieres?"));
+let numEscaparates = Number(prompt("¿Cuántos escaparates quieres?"));
 
 document.write("<div>");
 for (let i = 0; i < numEscaparates; i++) {
@@ -36,10 +36,10 @@ document.write("</div>");
 
 // division 4: semaforo y reloj
 
-var colorSemaforo = prompt("¿De qué color quieres el semáforo?");
+let colorSemaforo = prompt("¿De qué color quieres el semáforo?");
 colorSemaforo = colorSemaforo.toLowerCase();
 
-var horaReloj = prompt("¿Qué hora quieres que tenga el reloj (1-12)?");
+let horaReloj = prompt("¿Qué hora quieres que tenga el reloj (1-12)?");
 horaReloj = Number(horaReloj);
 
 // Si pone un valor no permitido, volver a preguntar
@@ -64,6 +64,7 @@ if (colorSemaforo == "rojo") {
     alert("Color no permitido. Debe ser: rojo, verde o ambar.")
 }
 
+// La hora deben estar entre 1 y 12. Si no, vuelve a preguntar
 while(horaReloj > 12 || horaReloj < 1) {
     alert("Debe ser una hora entre 1-12")
     horaReloj = Number(prompt("¿Qué hora quieres que tenga el reloj (1-12)?"));
@@ -125,7 +126,7 @@ document.write("</div>");
 
 // division 5: coches 
 
-var numCoches = prompt("¿Cuántos coches quieres?");
+let numCoches = prompt("¿Cuántos coches quieres?");
 numCoches = Number(numCoches)
 
 document.write("<div>");
