@@ -31,6 +31,7 @@ document.write("<div>");
 for (let i = 0; i < numEscaparates; i++) {
     console.log(`Dibujando escaparates: ${i}`);
     document.write("<img src='imagenes/escaparate.jpg' alt='escaparate' />"); // Imagen de los escaparates 
+    document.write("<img src='imagenes/oferta.png' alt='oferta' />"); // Imagen de las ofertas 
 }
 document.write("</div>");
 
@@ -71,56 +72,8 @@ while(horaReloj > 12 || horaReloj < 1) {
 }
 
 switch(horaReloj) {
-    case 1:
-        // hora 1
-        document.write("<img src='imagenes/reloj-1.jpg' alt='reloj' />");
-        break;
-    case 2: 
-        // hora 2
-        document.write("<img src='imagenes/reloj-2.jpg' alt='reloj' />");
-        break; 
-    case 3: 
-        // hora 3
-        document.write("<img src='imagenes/reloj-3.jpg' alt='reloj' />");
-        break;
-    case 4:
-        // hora 4
-        document.write("<img src='imagenes/reloj-4.jpg' alt='reloj' />");
-        break;
-    case 5: 
-        // hora 5
-        document.write("<img src='imagenes/reloj-5.jpg' alt='reloj' />");
-        break; 
-    case 6: 
-        // hora 6
-        document.write("<img src='imagenes/reloj-6.jpg' alt='reloj' />");
-        break;
-    case 7:
-        // hora 7
-        document.write("<img src='imagenes/reloj-7.jpg' alt='reloj' />");
-        break;
-    case 8: 
-        // hora 8
-        document.write("<img src='imagenes/reloj-8.jpg' alt='reloj' />");
-        break; 
-    case 9: 
-        // hora 9
-        document.write("<img src='imagenes/reloj-9.jpg' alt='reloj' />");
-        break;
-    case 10:
-        // hora 10
-        document.write("<img src='imagenes/reloj-10.jpg' alt='reloj' />");
-        break;
-    case 11:
-        // hora 11 
-        document.write("<img src='imagenes/reloj-11.jpg' alt='reloj' />");
-        break;
-    case 12:
-        // hora 12
-        document.write("<img src='imagenes/reloj-12.jpg' alt='reloj' />");
-        break;
     default:
-        alert("Debe ser una hora entre 1-12")
+        document.write(`<img src='imagenes/reloj-${horaReloj}.jpg' alt='reloj' />`);
 }
 document.write("</div>");
 
