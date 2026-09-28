@@ -1,0 +1,13 @@
+div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+div img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
