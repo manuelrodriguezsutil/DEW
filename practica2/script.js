@@ -17,6 +17,7 @@
 
 // Constructor del objeto
 let Calle = function (numCarteles, numPuertas, numPrimeraPuerta, numEscaparates, colorSemaforo, horaReloj, numCoches) {
+    // atributos de los objetos 
     this.numCarteles = numCarteles;
     this.numPuertas = numPuertas;
     this.numPrimeraPuerta = numPrimeraPuerta;
@@ -25,8 +26,9 @@ let Calle = function (numCarteles, numPuertas, numPrimeraPuerta, numEscaparates,
     this.horaReloj = horaReloj;
     this.numCoches = numCoches;
 
+    // funciones para dibujar las diferentes partes
     this.dibujarCarteles = function (doc) {
-        doc.write("<div>");
+        doc.write("<div>"); // abrir la división
         for (let i = 0; i < this.numCarteles; i++) {
             console.log(`Dibujando cartel: ${i}`)
             doc.write("<img src=imagenes/cartel.png alt='cartel' />"); // Imagen de los carteles 
@@ -42,7 +44,7 @@ let Calle = function (numCarteles, numPuertas, numPrimeraPuerta, numEscaparates,
             console.log(`Dibujando puerta: ${i}`)
             doc.write("<img src=imagenes/puerta.png alt='puerta' />"); // imagen de las puertas 
             doc.write(`<p>${numeroDePuerta}</p>`); // numero de las puertas 
-            numeroDePuerta += 2;
+            numeroDePuerta += 2; // incrementar el número de puertas por 2 
         }
         doc.write("</div>");
     }
@@ -73,6 +75,7 @@ let Calle = function (numCarteles, numPuertas, numPrimeraPuerta, numEscaparates,
     }
 
     this.dibujarReloj = function (doc) {
+        // switch para las horas 
         switch (this.horaReloj) {
             default:
                 doc.write(`<img src='imagenes/reloj-${this.horaReloj}.jpg' alt='reloj' />`);
@@ -80,7 +83,7 @@ let Calle = function (numCarteles, numPuertas, numPrimeraPuerta, numEscaparates,
     }
 
     this.dibujarCoches = function (doc) {
-        let coches = this.numCoches;
+        let coches = this.numCoches; // variable local para no cambiar el atributo del objeto
 
         doc.write("<div>");
         while (coches > 0) {
@@ -90,12 +93,13 @@ let Calle = function (numCarteles, numPuertas, numPrimeraPuerta, numEscaparates,
         doc.write("</div>");
     }
 
+    // funcion de dibujar toda la calle para no tener que dibujar cada seccion a mano
     this.dibujar = function (doc) {
         this.dibujarCarteles(doc);
         this.dibujarPuertas(doc);
         this.dibujarEscaparates(doc);
 
-        doc.write("<div>");
+        doc.write("<div>"); // Abrir la división aquí para poner el semaforo y el reloj en la misma división
         this.dibujarSemaforo(doc);
         this.dibujarReloj(doc);
         doc.write("</div>");
@@ -106,9 +110,9 @@ let Calle = function (numCarteles, numPuertas, numPrimeraPuerta, numEscaparates,
 
 // Funciones para pedir los atributos al usuario 
 function pedirNumero(mensaje) {
-    let num = Number(prompt(mensaje));
+    let num = Number(prompt(mensaje)); // convierte a entero la string introducida, si no se puede, devuelve un NaN
 
-    while (isNaN(num)) {
+    while (isNaN(num)) { // verificar que el numero introducido es un numero
         alert("Error: debes introducir un número.");
         num = Number(prompt(mensaje));
     }
