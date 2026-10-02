@@ -132,35 +132,35 @@ function pedirColorSemaforo() {
 }
 
 function pedirHoraReloj() {
-    let hora = Number(prompt("¿Qué hora quieres que tenga el reloj (1-12)?"));
+    let hora = pedirNumero("¿Qué hora quieres que tenga el reloj (1-12)?");
 
-    // la hora debe ser un número válido
-    while (isNaN(hora)) {
-        alert("Error: debes introducir un número entre 1-12");
-        hora = Number(prompt("¿Qué hora quieres que tenga el reloj (1-12)?"));
-    }
+    // // la hora debe ser un número válido
+    // while (isNaN(hora)) {
+    //     alert("Error: debes introducir un número entre 1-12");
+    //     hora = Number(prompt("¿Qué hora quieres que tenga el reloj (1-12)?"));
+    // }
 
     // La hora debe estar entre 1 y 12. Si no, vuelve a preguntar
     while (hora > 12 || hora < 1) {
         alert("Error: debes introducir un número entre 1-12");
-        hora = Number(prompt("¿Qué hora quieres que tenga el reloj (1-12)?"));
+        hora = pedirNumero("¿Qué hora quieres que tenga el reloj (1-12)?");
     }
     return hora;
 }
 
-function pedirNumeroCalles() {
-    let numCalle = Number(prompt("¿Cuántas calles quieres?"));
+// function pedirNumeroCalles() {
+//     let numCalle = Number(prompt("¿Cuántas calles quieres?"));
 
-    while (isNaN(numCalle)) {
-        alert("Error: debes introducir un número.");
-        numCalle = Number(prompt("¿Cuántas calles quieres?"));
-    }
+//     while (isNaN(numCalle)) {
+//         alert("Error: debes introducir un número.");
+//         numCalle = Number(prompt("¿Cuántas calles quieres?"));
+//     }
 
-    return numCalle;
-}
+//     return numCalle;
+// }
 
 // Pedir número de calles
-let numCalles = pedirNumeroCalles();
+let numCalles = pedirNumero("¿Cuántas calles quieres?");
 
 // Array de calles 
 let calles = [];
