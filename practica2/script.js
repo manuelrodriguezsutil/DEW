@@ -193,8 +193,12 @@ for (let i = 0; i < numCalles; i++) {
     calles.push(calle);
 }
 
-// Dibujar las calles en ventanas nuevas
-for (let i = 0; i < numCalles; i++) {
+// Dibujar la primera calle en la ventana actual
+document.write("<h1>Calle 1</h1>");
+calles[0].dibujar(document);
+
+// Dibujar las demás calles en ventanas nuevas
+for (let i = 1; i < numCalles; i++) {
     let ventana = window.open("", "_blank") // crear nueva ventana vacía
 
     // Añadir el html a la nueva ventana
