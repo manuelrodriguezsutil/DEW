@@ -1,0 +1,35 @@
+table {
+    border-collapse: collapse;
+}
+
+th,
+td {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+
+td {
+    border: 1px solid #999;
+}
+
+.barco0 {
+    background: #cfe8ff;
+}
+
+/* agua */
+.barco1 {
+    background: #4caf50;
+}
+
+/* pequeño */
+.barco2 {
+    background: #ff9800;
+}
+
+/* mediano */
+.barco3 {
+    background: #e53935;
+}
+
+/* grande */
