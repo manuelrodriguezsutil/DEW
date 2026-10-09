@@ -172,7 +172,7 @@ function pintarTablero() {
 }
 
 // preguntar donde colocar para todos los barcos
-function jugar() {
+function preguntarYColocarTodosBarcos() {
     for (let i = 0; i < tamanosBarcos.length; i++) {
         for (let n = 0; n < maxTipoBarcos[i]; n++) {
             colocarBarcos(tamanosBarcos[i]);
@@ -187,5 +187,47 @@ document.write("<h1>Batalla</h1>");
 document.write("<br/><br/>");
 
 document.write("<div>");
-jugar();
+preguntarYColocarTodosBarcos();
 document.write("</div>");
+
+setTimeout(() => {
+    console.log("Retrasado por 3 segundo.");
+}, 3000);
+
+function tirarBomba(fila, columna) {
+    if (fila < 0 || fila > matriz.length || columna < 0 || columna > matriz[0].length) {
+        return false;
+    }
+
+    if (matriz[fila][columna] !== 0) {
+        alert("¡Tocado!");
+        console.log("Tocado!");
+        matriz[fila][columna] = 0;
+    } else {
+        alert(`¡Agua! No hay barco en la posición: ${fila},${columna}`);
+    }
+}
+
+function todosHundidos() {
+    for (let i = 0; i < matriz.length; i++) {
+        for (let j = 0; j < matriz[0].length; j++) {
+            if (matriz[i][j] !== 0) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+function jugar() {
+    while (!todosHundidos()) {
+        let f = preguntaNumero("Selecciona la fila dónde quieres tirar la bomba: ");
+        let c = preguntaNumero("Selecciona la columna dónde quieres tirar la bomba: ");
+
+        tirarBomba(f, c);
+        pintarTablero();
+    }
+}
+
+jugar();
