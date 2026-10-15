@@ -192,7 +192,7 @@ function ponerOnClick() {
             let td = document.getElementById(`${i},${j}`);
 
             td.onclick = function () {
-                tirarBombas(i, j)
+                tirarBombas(i, j) // añade el atributo on click y le asigna la función de tirar bombas
             };
         }
     }
