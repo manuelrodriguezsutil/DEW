@@ -178,7 +178,7 @@ function pintarTablero() {
     for (let i = 0; i < matriz.length; i++) {
         document.write(`<tr><th>${i}</th>`); // número de fila
         for (let j = 0; j < matriz[i].length; j++) {
-            document.write(`<td class="barco${matriz[i][j]}" id="${i},${j}" onclick="tirarBombas(${i}, ${j})"></td>`); // pintar dependiendo del tipo de barco
+            document.write(`<td class="barco${matriz[i][j]}" id="${i},${j}"></td>`); // pintar dependiendo del tipo de barco
         }
         document.write("</tr>");
     }
