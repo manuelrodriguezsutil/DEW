@@ -1,0 +1,52 @@
+h1 {
+    text-align: center;
+}
+
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th,
+td {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+
+td {
+    border: 1px solid #999;
+}
+
+/* Agua */
+.barco0 {
+    background: #70baff;
+}
+
+/* barco pequeño (1) */
+.barco1 {
+    background: #4caf50;
+}
+
+/* barco mediano (2) */
+.barco2 {
+    background: #ff9800;
+}
+
+/* barco grande (3) */
+.barco3 {
+    background: #e53935;
+}
+
+.tocado {
+    background: #999;
+}
+
+.aguaTocada {
+    background: #466e93;
+}
