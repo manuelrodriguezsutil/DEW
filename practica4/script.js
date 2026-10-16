@@ -46,6 +46,12 @@ function crearMatriz(filas, columnas) {
     return matriz;
 }
 
+// objeto de tipo barco con sus posiciones y su tamaño
+let Barco = function (tamano, posiciones) {
+    this.tamano = tamano;
+    this.posiciones = posiciones;
+}
+
 // Preguntar al usuario por las dimensiones de la matriz
 let filas = preguntarNumeroEnRango("Introduce el número de filas (4-10):", 4, 10);
 let columnas = preguntarNumeroEnRango("Introduce el número de columnas (4-10):", 4, 10);
@@ -64,6 +70,8 @@ for (let i = 0; i < tamanosBarcos.length; i++) {
 
 console.log("Casillas de barco:", numeroMaximoBarcos);
 console.log("Barcos de cada tipo:", maxTipoBarcos);
+
+let barcos = [];
 
 // Devuelve cuánto avanza la fila en cada casilla del barco (1 si es vertical)
 function incrementoFila(orientacion) {
@@ -132,12 +140,18 @@ function colocarBarco(tamano) {
         }
 
         if (cabeBarco(fila, columna, tamano, orientacion)) { // si cabe, se añade a la matriz
+            posiciones = [];
+
             for (let i = 0; i < tamano; i++) {
                 let f = fila + i * incrementoFila(orientacion);
                 let c = columna + i * incrementoColumna(orientacion);
 
                 matriz[f][c] = tamano;
+                posiciones.push([f, c]);
             }
+
+            barcos.push(Barco(tamano, posiciones));
+
             colocado = true;
         } else {
             alert("Error: no hay espacio.");
@@ -234,4 +248,5 @@ document.write("<br/><br/>");
 
 document.write("<div>");
 preguntarYColocarTodosBarcos();
+console.log(barcos);
 document.write("</div>");
