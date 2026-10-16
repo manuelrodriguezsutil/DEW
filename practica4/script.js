@@ -148,13 +148,31 @@ function colocarBarco(tamano) {
     console.log(matriz);
 }
 
+function todosTocados() {
+    for (let i = 0; i < matriz.length; i++) {
+        for (let j = 0; j < matriz[0].length; j++) {
+            if (matriz[i][j] !== 0) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
 function tirarBombas(i, j) {
     // si no es agua
     if (matriz[i][j] !== 0) {
         matriz[i][j] = 0;
         let td = document.getElementById(`${i},${j}`);
         td.setAttribute("class", "tocado");
+
         alert("¡Tocado!");
+
+        if (todosTocados()) {
+            alert("¡Flota hundida!");
+        }
+
         return;
     }
 
