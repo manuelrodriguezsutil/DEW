@@ -1,11 +1,26 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 h1 {
     text-align: center;
 }
 
-div {
+.tablero {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-left: 250px;
+}
+
+.principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.leyenda {
+    padding: 50px;
 }
 
 table {
@@ -43,10 +58,10 @@ td {
     background: #e53935;
 }
 
-.tocado {
+.barco-1 {
     background: #999;
 }
 
-.aguaTocada {
+.barco-2 {
     background: #466e93;
 }

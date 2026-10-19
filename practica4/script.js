@@ -52,26 +52,18 @@ let Barco = function (tamano, posiciones) {
     this.posiciones = posiciones;
 }
 
-// Preguntar al usuario por las dimensiones de la matriz
-let filas = preguntarNumeroEnRango("Introduce el número de filas (4-10):", 4, 10);
-let columnas = preguntarNumeroEnRango("Introduce el número de columnas (4-10):", 4, 10);
-
-let matriz = crearMatriz(filas, columnas);
-
-let tamanosBarcos = [1, 2, 3]; // 1: pequeño, 2: mediano, 3: grande
-
-let numeroMaximoBarcos = Math.ceil((filas * columnas) / 3); // casillas totales de barco (1/3 del tablero)
-let casillasPorTipo = numeroMaximoBarcos / tamanosBarcos.length; // 1/3 para cada tipo
-
-let maxTipoBarcos = [];
-for (let i = 0; i < tamanosBarcos.length; i++) {
-    maxTipoBarcos.push(Math.floor(casillasPorTipo / tamanosBarcos[i]));
-}
-
-console.log("Casillas de barco:", numeroMaximoBarcos);
-console.log("Barcos de cada tipo:", maxTipoBarcos);
-
+// variables del juego
+let filas;
+let columnas;
+let matriz = [];
 let barcos = [];
+
+let tamanosBarcos;
+let numeroMaximoBarcos;
+let casillasPorTipo;
+let maxTipoBarcos = [];
+
+// let barcos = []; // array donde se guardan todos los objetos de barcos con tamaños y posiciones
 
 // Devuelve cuánto avanza la fila en cada casilla del barco (1 si es vertical)
 function incrementoFila(orientacion) {
@@ -120,6 +112,12 @@ function mapaTexto() {
     return texto;
 }
 
+// Guarda en localStorage los array de matriz y barcos
+function guardarBarcos() {
+    localStorage.setItem("matriz", JSON.stringify(matriz));
+    localStorage.setItem("barcos", JSON.stringify(barcos));
+}
+
 // preguntar al usuario la fila y la columna y colocar los barcos si se puede
 function colocarBarco(tamano) {
     let colocado = false;
@@ -150,7 +148,7 @@ function colocarBarco(tamano) {
                 posiciones.push([f, c]);
             }
 
-            barcos.push(Barco(tamano, posiciones));
+            barcos.push(new Barco(tamano, posiciones)); // crear un nuevo objeto de tipo barco y guardarlo en su array
 
             colocado = true;
         } else {
@@ -162,12 +160,28 @@ function colocarBarco(tamano) {
     console.log(matriz);
 }
 
+// función que recorre toda la matriz y busca si hay barcos o no
 function todosTocados() {
     for (let i = 0; i < matriz.length; i++) {
         for (let j = 0; j < matriz[0].length; j++) {
-            if (matriz[i][j] !== 0) {
+            if (matriz[i][j] !== 0 && matriz[i][j] !== -1 && matriz[i][j] !== -2) {
                 return false;
             }
+        }
+    }
+
+    return true;
+}
+
+// Recorre el array de barcos y verifica que sus posiciones en la matriz no sean igual a cero
+function barcoHundido(barco) {
+    for (let i = 0; i < barco.posiciones.length; i++) {
+        let posicion = barco.posiciones[i];
+        let fila = posicion[0];
+        let columna = posicion[1];
+
+        if (matriz[fila][columna] !== 0 && matriz[fila][columna] !== -1 && matriz[fila][columna] !== -2) {
+            return false;
         }
     }
 
@@ -177,22 +191,43 @@ function todosTocados() {
 function tirarBombas(i, j) {
     // si no es agua
     if (matriz[i][j] !== 0) {
-        matriz[i][j] = 0;
+        matriz[i][j] = -1;
+        guardarBarcos();
+
         let td = document.getElementById(`${i},${j}`);
-        td.setAttribute("class", "tocado");
+        td.setAttribute("class", "barco-1");
 
         alert("¡Tocado!");
 
+        // Verificar si todos los barcos están hundidos
         if (todosTocados()) {
             alert("¡Flota hundida!");
+        }
+
+        // verificar barcos individuales si están hundidos
+        for (let barco = 0; barco < barcos.length; barco++) {
+            let b = barcos[barco];
+
+            for (let posicion = 0; posicion < b.posiciones.length; posicion++) {
+                let p = b.posiciones[posicion];
+
+                if (p[0] === i && p[1] === j) {
+                    if (barcoHundido(b)) {
+                        alert("¡Barco hundido!");
+                    }
+
+                    break;
+                }
+            }
         }
 
         return;
     }
 
     // si es agua
+    matriz[i][j] = -2;
     let td = document.getElementById(`${i},${j}`);
-    td.setAttribute("class", "aguaTocada");
+    td.setAttribute("class", "barco-2");
     alert("¡Agua!");
 }
 
@@ -238,15 +273,85 @@ function preguntarYColocarTodosBarcos() {
         }
     }
 
+    guardarBarcos();
+
     pintarTablero();
     ponerOnClick();
 }
 
-// pintar titulo de la página
-document.write("<h1>Batalla de Barcos</h1>");
-document.write("<br/><br/>");
+// restaurar la partida guardada o crear una nueva
+let partidaGuardada = localStorage.getItem("matriz");
 
-document.write("<div>");
-preguntarYColocarTodosBarcos();
-console.log(barcos);
-document.write("</div>");
+if (partidaGuardada) {
+    matriz = JSON.parse(localStorage.getItem("matriz"));
+    barcos = JSON.parse(localStorage.getItem("barcos"));
+
+    filas = matriz.length;
+    columnas = matriz[0].length;
+
+    document.write("<h1>Batalla de Barcos</h1>");
+    document.write("<br/><br/>");
+
+    document.write("<div class='principal'>");
+
+    document.write("<div class='tablero'>");
+
+    pintarTablero();
+    ponerOnClick();
+
+    document.write("</div>");
+
+    document.write("<br/>");
+    document.write("<br/>");
+
+    document.write("<div class='leyenda'>");
+    document.write("<p style='color: red;'>ROJO: barco grande</p>");
+    document.write("<p style='color: orange;'>NARANJA: barco mediano</p>");
+    document.write("<p style='color: green;'>VERDE: barco pequeño</p>");
+    document.write("</div>");
+
+    document.write("</div>");
+
+} else {
+    // Preguntar al usuario por las dimensiones de la matriz
+    filas = preguntarNumeroEnRango("Introduce el número de filas (4-10):", 4, 10);
+    columnas = preguntarNumeroEnRango("Introduce el número de columnas (4-10):", 4, 10);
+
+    matriz = crearMatriz(filas, columnas);
+
+    tamanosBarcos = [1, 2, 3]; // 1: pequeño, 2: mediano, 3: grande
+
+    numeroMaximoBarcos = Math.ceil((filas * columnas) / 3); // casillas totales de barco (1/3 del tablero)
+    casillasPorTipo = numeroMaximoBarcos / tamanosBarcos.length; // 1/3 para cada tipo
+
+    maxTipoBarcos = [];
+    for (let i = 0; i < tamanosBarcos.length; i++) {
+        maxTipoBarcos.push(Math.floor(casillasPorTipo / tamanosBarcos[i]));
+    }
+
+    console.log("Casillas de barco:", numeroMaximoBarcos);
+    console.log("Barcos de cada tipo:", maxTipoBarcos);
+
+    // pintar titulo de la página
+    document.write("<h1>Batalla de Barcos</h1>");
+    document.write("<br/><br/>");
+
+    document.write("<div class='principal'>");
+
+    document.write("<div class='tablero'>");
+
+    preguntarYColocarTodosBarcos();
+
+    document.write("</div>");
+
+    document.write("<br/>");
+    document.write("<br/>");
+
+    document.write("<div class='leyenda'>");
+    document.write("<p style='color: red;'>ROJO: barco grande</p>");
+    document.write("<p style='color: orange;'>NARANJA: barco mediano</p>");
+    document.write("<p style='color: green;'>VERDE: barco pequeño</p>");
+    document.write("</div>");
+
+    document.write("</div>");
+}
