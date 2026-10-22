@@ -87,7 +87,7 @@ function cabeBarco(fila, columna, tamano, orientacion) {
         let f = fila + i * incrementoFila(orientacion);
         let c = columna + i * incrementoColumna(orientacion);
 
-        if (f >= matriz.length || c >= matriz[0].length || matriz[f][c] !== 0) {
+        if (f < 0 || c < 0 || f >= matriz.length || c >= matriz[0].length || matriz[f][c] !== 0) {
             return false;
         }
     }
@@ -138,7 +138,7 @@ function colocarBarco(tamano) {
         }
 
         if (cabeBarco(fila, columna, tamano, orientacion)) { // si cabe, se añade a la matriz
-            posiciones = [];
+            let posiciones = [];
 
             for (let i = 0; i < tamano; i++) {
                 let f = fila + i * incrementoFila(orientacion);
@@ -280,16 +280,7 @@ function preguntarYColocarTodosBarcos() {
     ponerOnClick();
 }
 
-// restaurar la partida guardada o crear una nueva
-let partidaGuardada = localStorage.getItem("matriz");
-
-if (partidaGuardada) {
-    matriz = JSON.parse(localStorage.getItem("matriz"));
-    barcos = JSON.parse(localStorage.getItem("barcos"));
-
-    filas = matriz.length;
-    columnas = matriz[0].length;
-
+function pintarpartidaGuardada() {
     document.write("<h1>Batalla de Barcos</h1>");
     document.write("<br/><br/>");
 
@@ -312,28 +303,9 @@ if (partidaGuardada) {
     document.write("</div>");
 
     document.write("</div>");
+}
 
-} else {
-    // Preguntar al usuario por las dimensiones de la matriz
-    filas = preguntarNumeroEnRango("Introduce el número de filas (4-10):", 4, 10);
-    columnas = preguntarNumeroEnRango("Introduce el número de columnas (4-10):", 4, 10);
-
-    matriz = crearMatriz(filas, columnas);
-
-    tamanosBarcos = [1, 2, 3]; // 1: pequeño, 2: mediano, 3: grande
-
-    numeroMaximoBarcos = Math.ceil((filas * columnas) / 3); // casillas totales de barco (1/3 del tablero)
-    casillasPorTipo = numeroMaximoBarcos / tamanosBarcos.length; // 1/3 para cada tipo
-
-    maxTipoBarcos = [];
-    for (let i = 0; i < tamanosBarcos.length; i++) {
-        maxTipoBarcos.push(Math.floor(casillasPorTipo / tamanosBarcos[i]));
-    }
-
-    console.log("Casillas de barco:", numeroMaximoBarcos);
-    console.log("Barcos de cada tipo:", maxTipoBarcos);
-
-    // pintar titulo de la página
+function pintarPartidaNueva() {
     document.write("<h1>Batalla de Barcos</h1>");
     document.write("<br/><br/>");
 
@@ -355,4 +327,38 @@ if (partidaGuardada) {
     document.write("</div>");
 
     document.write("</div>");
+}
+
+// restaurar la partida guardada o crear una nueva
+let partidaGuardada = localStorage.getItem("matriz");
+
+if (partidaGuardada) {
+    matriz = JSON.parse(localStorage.getItem("matriz"));
+    barcos = JSON.parse(localStorage.getItem("barcos"));
+
+    filas = matriz.length;
+    columnas = matriz[0].length;
+
+    pintarpartidaGuardada();
+} else {
+    // Preguntar al usuario por las dimensiones de la matriz
+    filas = preguntarNumeroEnRango("Introduce el número de filas (4-10):", 4, 10);
+    columnas = preguntarNumeroEnRango("Introduce el número de columnas (4-10):", 4, 10);
+
+    matriz = crearMatriz(filas, columnas);
+
+    tamanosBarcos = [1, 2, 3]; // 1: pequeño, 2: mediano, 3: grande
+
+    numeroMaximoBarcos = Math.ceil((filas * columnas) / 3); // casillas totales de barco (1/3 del tablero)
+    casillasPorTipo = numeroMaximoBarcos / tamanosBarcos.length; // 1/3 para cada tipo
+
+    maxTipoBarcos = [];
+    for (let i = 0; i < tamanosBarcos.length; i++) {
+        maxTipoBarcos.push(Math.floor(casillasPorTipo / tamanosBarcos[i]));
+    }
+
+    console.log("Casillas de barco:", numeroMaximoBarcos);
+    console.log("Barcos de cada tipo:", maxTipoBarcos);
+
+    pintarPartidaNueva();
 }
