@@ -202,6 +202,9 @@ function tirarBombas(i, j) {
         // Verificar si todos los barcos están hundidos
         if (todosTocados()) {
             alert("¡Flota hundida!");
+            localStorage.removeItem("matriz");
+            localStorage.removeItem("barcos");
+            location.reload();
         }
 
         // verificar barcos individuales si están hundidos
