@@ -58,10 +58,12 @@ td {
     background: #e53935;
 }
 
+/* barco tocado */
 .barco-1 {
     background: #999;
 }
 
+/* agua tocada */
 .barco-2 {
     background: #466e93;
 }

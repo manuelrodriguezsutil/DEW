@@ -180,7 +180,7 @@ function barcoHundido(barco) {
         let fila = posicion[0];
         let columna = posicion[1];
 
-        if (matriz[fila][columna] !== 0 && matriz[fila][columna] !== -1 && matriz[fila][columna] !== -2) {
+        if (matriz[fila][columna] !== -1) {
             return false;
         }
     }
@@ -190,7 +190,7 @@ function barcoHundido(barco) {
 
 function tirarBombas(i, j) {
     // si no es agua
-    if (matriz[i][j] !== 0) {
+    if (matriz[i][j] > 0) {
         matriz[i][j] = -1;
         guardarBarcos();
 
@@ -226,6 +226,7 @@ function tirarBombas(i, j) {
 
     // si es agua
     matriz[i][j] = -2;
+    guardarBarcos();
     let td = document.getElementById(`${i},${j}`);
     td.setAttribute("class", "barco-2");
     alert("¡Agua!");
