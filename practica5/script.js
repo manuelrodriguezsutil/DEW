@@ -4,9 +4,7 @@ let juego = {
     seleccionada: null,
     movimientos: 0,
     iniciado: false,
-    tiempo: {
-        segundos: 0,
-    },
+    segundos: 0,
     intervalo: null
 };
 
@@ -102,8 +100,8 @@ function comprobarTerminado() {
 
 // convierte el tiempo de segundos totales del intervalo (tiempo de juego total) a minutos y segundos reales. 
 function formatearTiempo() {
-    let minutos = Math.floor(juego.tiempo.segundos / 60);
-    let segundos = juego.tiempo.segundos % 60;
+    let minutos = Math.floor(juego.segundos / 60);
+    let segundos = juego.segundos % 60;
 
     return String(minutos) + ":" + String(segundos); // devuelve los número formateados en string
 }
@@ -112,7 +110,7 @@ function formatearTiempo() {
 function empezarCronometro() {
     clearInterval(juego.intervalo);
     juego.intervalo = setInterval(function () {
-        juego.tiempo.segundos++;
+        juego.segundos++;
         reloj.textContent = formatearTiempo();
     }, 1000);
 }
@@ -124,7 +122,7 @@ function reiniciar() {
     juego.torres = [[3, 2, 1], [], []];
     juego.seleccionada = null;
     juego.movimientos = 0;
-    juego.tiempo.segundos = 0;
+    juego.segundos = 0;
     juego.iniciado = false;
     reloj.textContent = "00:00";
 
