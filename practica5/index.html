@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torres de Hanoi</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <h1>Torres de Hanoi</h1>
+
+    <div class="controles">
+        <button id="inicio">Inicio</button>
+        <button id="reiniciar">Reiniciar</button>
+    </div>
+
+    <div class="info">
+        <p>Movimientos: <span id="movimientos">0</span></p>
+        <p>Tiempo: <span id="tiempo">00:00</span></p>
+    </div>
+
+    <div class="juego">
+        <div class="torre" id="torre0">
+            <div class="celda" id="celda00"></div>
+            <div class="celda" id="celda01"></div>
+            <div class="celda" id="celda02"></div>
+        </div>
+
+        <div class="torre" id="torre1">
+            <div class="celda" id="celda10"></div>
+            <div class="celda" id="celda11"></div>
+            <div class="celda" id="celda12"></div>
+        </div>
+
+        <div class="torre" id="torre2">
+            <div class="celda" id="celda20"></div>
+            <div class="celda" id="celda21"></div>
+            <div class="celda" id="celda22"></div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>

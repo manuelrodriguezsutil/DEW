@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+.controles {
+    margin: 25px 0;
+}
+
+input,
+button {
+    padding: 10px;
+    margin: 5px;
+}
+
+button {
+    cursor: pointer;
+}
+
+.informacion {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.juego {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.celda {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.seleccionada {
+    background-color: lightblue;
+}
+
+.torre {
+    width: 180px;
+    border-bottom: 8px solid #555;
+    position: relative;
+}
+
+.disco {
+    height: 42px;
+    border-radius: 8px;
+}
+
+.disco1 {
+    width: 60px;
+    background-color: tomato;
+}
+
+.disco2 {
+    width: 100px;
+    background-color: gold;
+}
+
+.disco3 {
+    width: 140px;
+    background-color: mediumseagreen;
+}
