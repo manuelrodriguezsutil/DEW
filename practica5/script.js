@@ -66,20 +66,24 @@ function pulsarTorre(i) {
     if (!juego.iniciado) return;
 
     if (juego.seleccionada === null) {
+        // permitir al usuario seleccionar solo si la torre tiene discos
         if (juego.torres[i].length > 0) {
             juego.seleccionada = i;
         }
     } else {
-        let origen = juego.torres[juego.seleccionada];
-        let destino = juego.torres[i];
-        let disco = origen[origen.length - 1];
-        let arriba = destino[destino.length - 1];
+        let origen = juego.torres[juego.seleccionada]; // es la torre donde se encuentra el disco seleccionado (el click anterior, la primera parte del if)
+        let destino = juego.torres[i]; // la torre seleccionada con el click de ahora
+        let disco = origen[origen.length - 1]; // el disco que se quiere mover es el de arriba de la torre de origen
+        let arriba = destino[destino.length - 1]; // se quiero mover a la parte de arriba de la torre destino (la última posición del array)
 
+        // si no se hace click en la misma torre y la torre destino no tiene un disco menor en la posición de abajo
         if (i !== juego.seleccionada && (destino.length === 0 || arriba > disco)) {
-            destino.push(origen.pop());
-            juego.movimientos++;
+            destino.push(origen.pop()); // se le añade el disco al array de la torre destino y se le quita a la torre de origen. 
+            // Se puede hacer con un solo método de pop() que eliminar el último elemento de un array y lo devuelve
+            juego.movimientos++; // se aumenta el número de movimientos + 1
         }
 
+        // quitar la seleccion
         juego.seleccionada = null;
     }
 
@@ -87,6 +91,7 @@ function pulsarTorre(i) {
     comprobarTerminado();
 }
 
+// comprueba que todos los discos están en la última torre
 function comprobarTerminado() {
     if (juego.torres[2].length === 3) {
         juego.iniciado = false;
@@ -95,21 +100,24 @@ function comprobarTerminado() {
     }
 }
 
+// convierte el tiempo de segundos totales del intervalo (tiempo de juego total) a minutos y segundos reales. 
 function formatearTiempo() {
     let minutos = Math.floor(juego.tiempo.segundos / 60);
     let segundos = juego.tiempo.segundos % 60;
 
-    return String(minutos) + ":" + String(segundos);
+    return String(minutos) + ":" + String(segundos); // devuelve los número formateados en string
 }
 
+// empieza el cronómetro y pinta el tiempo en el html
 function empezarCronometro() {
     clearInterval(juego.intervalo);
     juego.intervalo = setInterval(function () {
-        juego.segundos++;
+        juego.tiempo.segundos++;
         reloj.textContent = formatearTiempo();
     }, 1000);
 }
 
+// reinicia todos los atributos del juego y reinicia el intervalo de tiempo
 function reiniciar() {
     clearInterval(juego.intervalo);
 
@@ -123,10 +131,12 @@ function reiniciar() {
     dibujar();
 }
 
+// empieza el juego
 function jugar() {
     reiniciar();
     juego.iniciado = true;
     empezarCronometro();
 }
 
+// dibujar por primera vez 
 dibujar();

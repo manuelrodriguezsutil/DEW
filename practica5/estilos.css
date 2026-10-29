@@ -20,6 +20,13 @@ button {
 
 button {
     cursor: pointer;
+    color: black;
+    border: 0;
+    border-radius: 5px;
+}
+
+#inicio {
+    background-color: palegreen;
 }
 
 .informacion {
