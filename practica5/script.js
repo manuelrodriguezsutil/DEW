@@ -1,5 +1,9 @@
 // objeto general para los atributos que tiene el juego
+let mejorTiempo = null;
+let mejorMovimientos = null;
+
 let juego = {
+    nombre: "jugador",
     torres: [[3, 2, 1], [], []],
     seleccionada: null,
     movimientos: 0,
@@ -8,10 +12,15 @@ let juego = {
     intervalo: null
 };
 
+let partidas = [];
+
 // obtener los elemntos del html para poder modificarlos con javascript
 let movimientosHTML = document.getElementById("movimientos");
 let reloj = document.getElementById("tiempo");
 let mensaje = document.getElementById("mensaje");
+let input = document.getElementById("nombreJugador");
+
+let nombreJugador = input.value;
 
 document.getElementById("inicio").onclick = jugar;
 document.getElementById("reiniciar").onclick = reiniciar;
@@ -88,6 +97,7 @@ function pulsarTorre(i) {
 
     dibujar();
     comprobarTerminado();
+    guardarPartida();
 }
 
 // comprueba que todos los discos están en la última torre
@@ -96,6 +106,18 @@ function comprobarTerminado() {
         juego.iniciado = false;
         clearInterval(juego.intervalo);
         mensaje.innerText = "¡Has ganado en " + juego.movimientos + " movimientos!";
+
+        // COMPROBAR SI ES MOVIMIENTOS Y TIEMPO RECORD
+        if (guardarRecord()) {
+            mensaje.innerText += " ¡Nuevo récord!";
+        }
+
+        // guardar partida en array de partidas 
+        partidas.push({
+            nombre: juego.nombre,
+            movimientos: juego.movimientos,
+            segundos: juego.segundos
+        });
     }
 }
 
@@ -134,9 +156,53 @@ function reiniciar() {
 // empieza el juego
 function jugar() {
     reiniciar();
+    juego.nombre = input.value || "jugador";
     juego.iniciado = true;
     empezarCronometro();
 }
 
+function guardarPartida() {
+    // Guardar el estado del juego en localStorage
+    localStorage.setItem("juego", JSON.stringify(juego));
+    localStorage.setItem("mejorTiempo", mejorTiempo);
+    localStorage.setItem("mejorMovimientos", mejorMovimientos);
+    localStorage.setItem("partidas", JSON.stringify(partidas));
+}
+
+function restaurarPartida() {
+    // Recuperar el estado guardado
+    if (localStorage.getItem("juego") === null) return; // si no hay nada guardado no se restaura
+
+    juego = JSON.parse(localStorage.getItem("juego"));
+    mejorTiempo = JSON.parse(localStorage.getItem("mejorTiempo"));
+    mejorMovimientos = JSON.parse(localStorage.getItem("mejorMovimientos"));
+    partidas = JSON.parse(localStorage.getItem("partidas"));
+
+    reloj.textContent = formatearTiempo();
+
+    // si la partida estaba a medias, el cronómetro sigue
+    if (juego.iniciado) {
+        empezarCronometro();
+    }
+}
+
+function guardarRecord() {
+    // Comprobar si el tiempo es mejor que el anterior
+    let record = false;
+
+    if (mejorTiempo === null || juego.segundos < mejorTiempo) {
+        mejorTiempo = juego.segundos;
+        record = true;
+    }
+
+    if (mejorMovimientos === null || juego.movimientos < mejorMovimientos) {
+        mejorMovimientos = juego.movimientos;
+        record = true;
+    }
+
+    return record;
+}
+
 // dibujar por primera vez 
+restaurarPartida();
 dibujar();
