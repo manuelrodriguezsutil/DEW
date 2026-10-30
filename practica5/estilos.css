@@ -1,46 +1,86 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
+    color: #333;
     padding: 20px;
 }
 
 h1 {
     color: #333;
+    margin-bottom: 30px;
 }
 
-.controles {
-    margin: 25px 0;
+/* Mensajes */
+
+#mensaje {
+    color: #555;
 }
 
-input,
-button {
+/* Guardar y restaurar */
+
+.guardar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+input {
     padding: 10px;
     margin: 5px;
-}
-
-button {
-    cursor: pointer;
-    color: black;
-    border: 0;
+    border: 1px solid #ddd;
     border-radius: 5px;
 }
 
-#inicio {
-    background-color: palegreen;
+/* Botones */
+
+button {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #e5e5e5;
+    cursor: pointer;
 }
 
-.informacion {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-bottom: 30px;
+button:hover {
+    background-color: #d5d5d5;
 }
+
+#inicio {
+    background-color: #2a9d8f;
+    color: white;
+}
+
+#inicio:hover {
+    background-color: #21867a;
+}
+
+/* Controles */
+
+.controles {
+    margin: 10px 0;
+}
+
+/* Juego */
 
 .juego {
     display: flex;
     justify-content: center;
     gap: 30px;
+    margin: 50px 0;
 }
+
+/* Torres */
+
+.torre {
+    width: 180px;
+    border-bottom: 8px solid #555;
+    position: relative;
+}
+
+/* Celdas */
 
 .celda {
     height: 60px;
@@ -51,14 +91,11 @@ button {
 }
 
 .seleccionada {
-    background-color: lightblue;
+    background-color: #d6eaf8;
+    border-radius: 5px;
 }
 
-.torre {
-    width: 180px;
-    border-bottom: 8px solid #555;
-    position: relative;
-}
+/* Discos */
 
 .disco {
     height: 42px;
@@ -67,15 +104,30 @@ button {
 
 .disco1 {
     width: 60px;
-    background-color: tomato;
+    background-color: #e76f51;
 }
 
 .disco2 {
     width: 100px;
-    background-color: gold;
+    background-color: #e9c46a;
 }
 
 .disco3 {
     width: 140px;
-    background-color: mediumseagreen;
+    background-color: #2a9d8f;
+}
+
+/* Información */
+
+.info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.info p {
+    background-color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
 }

@@ -11,11 +11,17 @@
 <body>
     <h1>Torres de Hanoi</h1>
 
-    <br />
+    <p id="mensaje"></p>
 
-    <div class="info">
-        <p>Movimientos: <span id="movimientos">0</span></p>
-        <p>Tiempo: <span id="tiempo">00:00</span></p>
+    <div class="guardar">
+        <input type="text" id="nombreJugador" placeholder="Nombre del jugador">
+        <button id="guardar">Guardar</button>
+        <button id="restaurar">Restaurar</button>
+    </div>
+
+    <div class="controles">
+        <button id="inicio">Inicio</button>
+        <button id="reiniciar">Reiniciar</button>
     </div>
 
     <br />
@@ -42,9 +48,10 @@
 
     <br />
 
-    <div class="controles">
-        <button id="inicio">Inicio</button>
-        <button id="reiniciar">Reiniciar</button>
+    <div class="info">
+        <p>Movimientos: <span id="movimientos">0</span></p>
+        <p>Tiempo: <span id="tiempo">00:00</span></p>
+        <p>Mejor tiempo: <span id="mejorTiempo">--:--</span></p>
     </div>
 
     <script type="text/javascript" src="script.js"></script>

@@ -9,8 +9,9 @@ let juego = {
 };
 
 // obtener los elemntos del html para poder modificarlos con javascript
-let movimientosHTML = document.getElementById("movimientos")
-let reloj = document.getElementById("tiempo")
+let movimientosHTML = document.getElementById("movimientos");
+let reloj = document.getElementById("tiempo");
+let mensaje = document.getElementById("mensaje");
 
 document.getElementById("inicio").onclick = jugar;
 document.getElementById("reiniciar").onclick = reiniciar;
@@ -94,7 +95,7 @@ function comprobarTerminado() {
     if (juego.torres[2].length === 3) {
         juego.iniciado = false;
         clearInterval(juego.intervalo);
-        alert("¡Has ganado en " + juego.movimientos + " movimientos!");
+        mensaje.innerText = "¡Has ganado en " + juego.movimientos + " movimientos!";
     }
 }
 
@@ -125,6 +126,7 @@ function reiniciar() {
     juego.segundos = 0;
     juego.iniciado = false;
     reloj.textContent = "00:00";
+    mensaje.textContent = "";
 
     dibujar();
 }
