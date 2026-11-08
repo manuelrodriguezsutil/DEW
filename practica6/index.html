@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Árbol de archivos</title>
+    <link rel="stylesheet" href="estilos.css">
+    <script src="script.js" defer></script>
 </head>
-
 <body>
     <div class="contenedor">
         <h1>Árbol de archivos</h1>
+        <ul class="arbol"></ul>
 
-        <ul class="arbol">
+        <form id="formularioCrear">
+            <p id="ubicacion">Ubicación actual: /</p>
+            <input id="nombre" type="text" placeholder="Nombre (carpeta o archivo.ext)" autocomplete="off">
+            <button type="submit" id="crear">Crear</button>
+        </form>
 
-        </ul>
+        <form id="formularioBuscar">
+            <input id="buscar" type="text" placeholder="Buscar" autocomplete="off">
+            <button type="button" id="limpiar">Limpiar</button>
+        </form>
 
-        <input id="nombre" type="text" />
-        <button type="submit" id="crear">Crear</button>
+        <p id="mensaje"></p>
     </div>
 </body>
-
 </html>
