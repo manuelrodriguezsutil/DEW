@@ -111,7 +111,7 @@ function crearElementoArbol(item) {
     if (esCarpeta && item.abierta) {
         let lista = document.createElement("ul");
 
-        for (let contenido of item.contenido) {
+        for (let contenido of item.contenido.filter(item => aplicarFiltro(item))) {
             lista.appendChild(crearElementoArbol(contenido));
         }
 
@@ -205,6 +205,23 @@ function borrarItem(item) {
 
         pintarArbol();
     }
+}
+
+function aplicarFiltro(item) {
+    if (textoFiltro === "") {
+        return true;
+    }
+
+    let nombreArchivo = item.nombre.toLowerCase();
+    if (nombreArchivo.includes(textoFiltro)) {
+        return true;
+    }
+
+    return false;
+}
+
+function mostrarElementos() {
+
 }
 
 // Pintar por primera vez cuando se carga la página
