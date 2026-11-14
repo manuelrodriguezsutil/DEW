@@ -31,3 +31,98 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+.error {
+    color: red;
+}
+
+.correcto {
+    color: green;
+}
+
+body {
+    background: #f3f4f6;
+    margin: 0;
+    padding: 30px 10px;
+}
+
+.contenedor {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 20px 25px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+ul {
+    list-style: none;
+    padding-left: 22px;
+}
+
+.arbol {
+    padding-left: 0;
+}
+
+li {
+    margin: 2px 0;
+}
+
+.nombre:hover {
+    background: #e8f0fe;
+    border-radius: 4px;
+}
+
+.seleccionada {
+    background: #d2e3fc;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+button {
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background: #fafafa;
+    border-radius: 4px;
+    padding: 2px 8px;
+}
+
+button:hover {
+    background: #e5e5e5;
+}
+
+.borrar {
+    color: #c62828;
+}
+
+.anadir {
+    color: #2e7d32;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+#ubicacion {
+    width: 100%;
+    margin: 0;
+    color: #555;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button {
+    padding: 6px 12px;
+}
