@@ -98,7 +98,21 @@ function guardar() {
     mostrarMensaje("Datos guardados correctamente.");
 }
 
-function recuperar() { }
+function recuperar() {
+    let datosGuardados = sessionStorage.getItem("datos");
+    if (datosGuardados === null) {
+        mostrarMensaje("No hay datos guardados.");
+        return;
+    }
+
+    inputs.forEach((input) => {
+        if (datos[input.name]) {
+            input.value = datos[input.name];
+        } else {
+            input.value = "";
+        }
+    });
+}
 
 function mostrarMensaje(texto, tipo = "exito") {
     let mensaje = document.querySelector("#mensajeEstado");
