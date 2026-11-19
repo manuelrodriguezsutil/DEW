@@ -1,144 +1,127 @@
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: #f1f5f9;
-    color: #1e293b;
-    padding: 30px 15px;
+    font-family: system-ui, Arial, sans-serif;
+    background-color: #eef1f5;
+    color: #222;
+    /* display: flex;
+    justify-content: center; */
+    padding: 2rem 1rem;
 }
 
-.contenedor {
-    max-width: 520px;
-    margin: 0 auto;
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
+/* .contenedor {
+    width: 100%;
+    max-width: 560px;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+} */
 
 h1 {
     text-align: center;
-    font-size: 1.5rem;
-    color: #0f172a;
-    margin-bottom: 25px;
+    margin-bottom: 1.5rem;
 }
 
 .campo {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
 }
 
-label {
-    font-size: 0.9rem;
+.campo label {
+    display: block;
     font-weight: 600;
-    color: #334155;
-    margin-bottom: 6px;
+    margin-bottom: 0.3rem;
 }
 
-input {
+.campo input {
     width: 100%;
-    padding: 10px 14px;
-    font-size: 0.95rem;
-    border: 2px solid #cbd5e1;
-    border-radius: 8px;
+    padding: 0.6rem 0.8rem;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.campo input:focus {
     outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    background-color: #fff;
-    color: #1e293b;
+    border-color: #4a7bd0;
 }
 
-input:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+/* Campo incorrecto: rojo */
+.campo input.invalido {
+    border-color: #d93025;
+    background-color: #fdecea;
 }
 
-input.valido {
-    border-color: #22c55e;
+/* Campo correcto (solo cuando todo el formulario es válido): verde */
+.campo input.valido {
+    border-color: #1e8e3e;
+    background-color: #e6f4ea;
 }
 
-input.invalido {
-    border-color: #ef4444;
-}
-
-/* Ocultar flechas en inputs de tipo number */
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-input[type=number] {
-    -moz-appearance: textfield;
-}
-
-/* Mensajes de error */
-.campo span {
+/* Avisos */
+.aviso {
     display: none;
-    font-size: 0.8rem;
-    color: #dc2626;
-    font-weight: 500;
-    margin-top: 5px;
+    margin-top: 0.3rem;
+    font-size: 0.85rem;
+    color: #d93025;
 }
 
-input.invalido + span {
+.aviso.visible {
     display: block;
 }
 
-/* Botón de envío */
-button {
-    width: 100%;
-    margin-top: 10px;
-    padding: 12px;
-    font-size: 1rem;
-    font-weight: 600;
-    color: #ffffff;
-    background-color: #2563eb;
+/* Botones */
+.botones {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.botones button {
+    flex: 1;
+    padding: 0.8rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
+    transition: opacity 0.2s;
 }
 
-button:hover {
-    background-color: #1d4ed8;
+.botones button:hover {
+    opacity: 0.85;
 }
 
-button:active {
-    transform: scale(0.99);
+#botonGuardar {
+    background-color: #1e8e3e;
 }
 
-/* Caja de mensajes de estado */
+#botonRecuperar {
+    background-color: #4a7bd0;
+}
+
 .mensaje {
     display: none;
-    margin-top: 15px;
-    padding: 10px 14px;
-    border-radius: 8px;
-    font-size: 0.9rem;
+    margin-top: 1rem;
+    padding: 0.8rem;
+    border-radius: 6px;
     text-align: center;
-    font-weight: 500;
 }
 
 .mensaje.exito {
     display: block;
-    background-color: #dcfce7;
-    color: #166534;
-    border: 1px solid #86efac;
+    background-color: #e6f4ea;
+    color: #1e8e3e;
 }
 
 .mensaje.error {
     display: block;
-    background-color: #fee2e2;
-    color: #991b1b;
-    border: 1px solid #fca5a5;
-}
-
-.mensaje.info {
-    display: block;
-    background-color: #e0f2fe;
-    color: #075985;
-    border: 1px solid #7dd3fc;
+    background-color: #fdecea;
+    color: #d93025;
 }
