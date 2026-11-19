@@ -58,8 +58,7 @@ h1 {
 /* Avisos */
 .aviso {
     display: none;
-    margin-top: 0.3rem;
-    font-size: 0.85rem;
+    margin-top: 10px;
     color: #d93025;
 }
 
@@ -70,8 +69,8 @@ h1 {
 /* Botones */
 .botones {
     display: flex;
-    gap: 1rem;
-    margin-top: 1.5rem;
+    gap: 10px;
+    margin-top: 20px;
 }
 
 .botones button {
