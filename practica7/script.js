@@ -71,17 +71,15 @@ function validate(campo) {
 }
 
 function validarTodo() {
+    let valido = true;
+
     inputs.forEach((input) => {
         if (!validate(input)) {
-            return false;
+            valido = false;
         }
     });
 
-    inputs.forEach((input) => {
-        input.className = "valido";
-    });
-
-    return true;
+    return valido;
 }
 
 function guardar() {
@@ -104,6 +102,8 @@ function recuperar() {
         mostrarMensaje("No hay datos guardados.");
         return;
     }
+
+    datos = JSON.parse(datosGuardados);
 
     inputs.forEach((input) => {
         if (datos[input.name]) {
