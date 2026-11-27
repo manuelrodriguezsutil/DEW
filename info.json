@@ -1,0 +1,41 @@
+[
+  {
+    "nombre": "Pepe",
+    "apellido": "López Pérez",
+    "dni": "12345678Z",
+    "fecha": "22/09/2000",
+    "cp": "35500",
+    "correo": "pepe@example.com",
+    "teléfono": "928666666",
+    "móvil": "666999666",
+    "tarjeta": "4111111111111111",
+    "iban": "ES9121000418450200051332",
+    "contraseña": "Ejemplo1234!"
+  },
+  {
+    "nombre": "María",
+    "apellido": "García Ruiz",
+    "dni": "87654321X",
+    "fecha": "15/03/1995",
+    "cp": "35001",
+    "correo": "maria@example.com",
+    "teléfono": "928111222",
+    "móvil": "677888999",
+    "tarjeta": "4111111111111111",
+    "iban": "ES9121000418450200051332",
+    "contraseña": "Ejemplo5678#"
+  },
+  {
+    "nombre": "Juan",
+    "apellido": "Martín Santana",
+    "dni": "11223344B",
+    "fecha": "02/11/1988",
+    "cp": "35100",
+    "correo": "juan@example.com",
+    "teléfono": "928333444",
+    "móvil": "699001122",
+    "tarjeta": "4111111111111111",
+    "iban": "ES9121000418450200051332",
+    "contraseña": "Ejemplo9012$"
+  }
+]
